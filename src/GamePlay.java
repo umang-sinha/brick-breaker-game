@@ -1,3 +1,5 @@
+import org.w3c.dom.css.Rect;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -67,6 +69,34 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 
             if(new Rectangle(ballPositionX, ballPositionY, 20, 20).intersects(new Rectangle(playerX, 550, 100, 8))){
                 ballYdirection = -ballYdirection;
+            }
+
+            A: for (int i = 0; i < map.map.length; i++) {
+                for (int j = 0; j < map.map[0].length; j++){
+                    if (map.map[i][j] > 0){
+                        int brickX = j * map.brickWidth + 80;
+                        int brickY = i * map.brickHeight + 50;
+                        int brickWidth = map.brickWidth;
+                        int brickHeight = map.brickHeight;
+
+                        Rectangle rect = new Rectangle(brickX, brickY, brickWidth, brickHeight);
+                        Rectangle ballRect = new Rectangle(ballPositionX, ballPositionY, 20, 20);
+                        Rectangle brickRect = rect;
+
+                        if (ballRect.intersects(brickRect)){
+                            map.setBrickValue(0, i, j);
+                            totalBricks = totalBricks - 1;
+                            score = score + 5;
+
+                            if (ballPositionX + 19 <= brickRect.x || ballPositionX + 1 >= brickRect.x + brickRect.width) {
+                                ballXdirection = -ballXdirection;
+                            } else {
+                                ballYdirection = -ballYdirection;
+                            }
+                            break A;
+                        }
+                    }
+                }
             }
 
             ballPositionX = ballPositionX + ballXdirection;
