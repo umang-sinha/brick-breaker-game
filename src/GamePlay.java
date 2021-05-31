@@ -63,6 +63,18 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         g.setColor(Color.yellow);
         g.fillOval(ballPositionX, ballPositionY, 20, 20);
 
+        if (totalBricks <= 0){
+            play = false;
+            ballXdirection = 0;
+            ballYdirection = 0;
+            g.setColor(Color.GREEN);
+            g.setFont(new Font("comic sans", Font.BOLD, 25));
+            g.drawString("CONGRATULATIONS!! YOU WON!",190, 300);
+            g.setColor(Color.white);
+            g.setFont(new Font("comic sans", Font.BOLD, 25));
+            g.drawString("Press Enter to Restart",190, 330);
+        }
+
         if(ballPositionY > 570){
             play = false;
             ballXdirection = 0;
