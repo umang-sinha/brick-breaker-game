@@ -21,6 +21,14 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
     private int ballXdirection = -1;
     private int ballYdirection = -2;
 
+    public GamePlay(){
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(true);
+        timer = new Timer(delay, this);
+        timer.start();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
