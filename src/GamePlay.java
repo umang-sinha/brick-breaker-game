@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -27,6 +28,26 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         setFocusTraversalKeysEnabled(true);
         timer = new Timer(delay, this);
         timer.start();
+    }
+
+    public void paint(Graphics g){
+        //background
+        g.setColor(Color.BLACK);
+        g.fillRect(1, 1, 692, 592);
+
+        //borders
+        g.setColor(Color.yellow);
+        g.fillRect(0, 0, 3, 592);
+        g.fillRect(0, 0, 692, 3);
+        g.fillRect(684, 0, 3, 592);
+
+        //paddle
+        g.setColor(Color.green);
+        g.fillRect(playerX, 550, 100, 8);
+
+        //ball
+        g.setColor(Color.yellow);
+        g.fillRect(ballPositionX, ballPositionX, 20, 20);
     }
 
     @Override
